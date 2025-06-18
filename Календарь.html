@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь</title>
+    <!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aboutMe</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/phosphor-icons/1.4.2/phosphor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+	<style>
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap");
+/* Импортирует шрифт Alegreya Sans из Google Fonts */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    background-image: url(5793072183021516207.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
+ul {
+    margin-left: auto;
+	margin-right: auto;
+	position: relative; /* Устанавливает относительное позиционирование для ul */
+	display: flex; /* Устанавливает флекс-дисплей для ul */
+	gap: 28px; /* станавливает расстояние между элементами списка */
+}
+
+ul li { /* Стили для элементов списка (li) */
+	position: relative; /* Устанавливает относительное позиционирование для li */
+	list-style: none; /* Убирает маркеры списка по умолчанию */
+	width: 72px; /* Устанавливает ширину элемента списка */
+	height: 72px; /* станавливает высоту элемента списка */
+	border-radius: 72px; /* Закругляет углы элемента списка */
+	background: rgb(255, 255, 255); /* Устанавливает белый фон элемента списка */
+	cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент списка */
+	display: flex; /* Устанавливает флекс-дисплей для li */
+	align-items: center; /* центрирует элементы по вертикали в li */
+	justify-content: center; /* центрирует элементы по горизонтали в li */
+	box-shadow: 0 0 0 2px #000; /* Добавляет тень к элементу списк*/
+	transition: 300ms; /* Задает время перехода для анимаций */
+}
+
+ul li:hover { /* Стили для элемента списка при наведении курсора */
+	width: 180px; /* Увеличивает ширину элемента списка при наведении */
+	box-shadow: 0 0 0 2px var(--bg-color); /* Меняет цвет тени при наведении на элемент списка */
+}
+
+ul li::before { /* Псевдоэлемент перед элементом списка */
+	content: ""; /* Задает пустое содержимое для псевдоэлемента */
+	position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента */
+	inset: 0; /* Задает нулевые отступы со всех сторон псевдоэлемента, чтобы он занимал всю площадь родителя */
+	border-radius: 72px; /* Закругляет углы псевдоэлемента  */
+	background: var(--bg-color); /* Задает фон псевдоэлемента, используя переменную цвета фона */
+	opacity: 0; /* Задает начальную непрозрачность псевдоэлемента (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций псевдоэлемента */
+}
+
+ul li:hover::before { /* Стили для псевдоэлемента при наведении на элемент списка */
+	opacity: 1; /* Делает псевдоэлемент видимым при наведении */
+}
+
+ul li span { /* Стили для вложенных элементов span в li */
+	position: absolute; /* Устанавливает абсолютное позиционирование для span */
+}
+
+ul li i { /* Стили для иконок внутри элемента списка (i) */
+	color: rgb(0, 0, 0); /* Устанавливает черный цвет для иконки */
+	font-size: 2em; /* Задает размер шрифта для иконки */
+	transition: 300ms; /* Задает время перехода для анимаций иконки */
+	transition-delay: 150ms;  /* Задает задержку перед началом анимации иконки */
+}
+
+ul li:hover i { /* стили для иконки при наведении на элемент списка  */
+	transform: scale(0); /* Уменьшает размер иконки до нуля при наведении */
+	color: #fff; /* Меняет цвет иконки на белый при наведении */
+	transition-delay: 0s; /* Убирает задержку перед началом анимации иконки при наведении */
+}
+
+ul li .text { /* Стили для текста внутри элемента списка (span с классом text) */
+	color: #fff; /* Устанавливает белый цвет текста */
+	font-size: 1.5em; /* Задает размер шрифта для текста */
+	z-index: 1; /* Устанавливает уровень наложения текста над другими элементами */
+	text-transform: uppercase; /* Преобразует текст в верхний регистр */
+	font-weight: 400; /* Задает толщину шрифта для текста */
+	letter-spacing: 0.024em; /* Устанавливает расстояние между буквами текста */
+	opacity: 0; /* Задает начальную непрозрачность текста (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций текста */
+	letter-spacing: -0.125px; /* Задает отрицательное расстояние между буквами текста */
+}
+
+ul li:hover .text { /* Стили для текста при наведении на элемент списка */
+	opacity: 1; /* Делает текст видимым при наведении */
+}
+ .icon {  
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    margin-left: 18%;
+    padding-top: 10px;
+	background-color: rgba(255, 255, 255, 0);
+}
+.product-post {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: 15px auto;
+}
+
+.product-image {
+    max-width: 100%; /* Ограничение ширины изображения */
+            height: auto;
+}
+
+.product-title {
+    font-size: 24px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-category,
+.product-status,
+.product-description,
+.product-price,
+.product-address {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #e74c3c; /* Красный цвет для цены */
+}
+
+.product-address {
+    font-style: italic; /* Курсив для адреса */
+}
+.text1 h3 {
+    margin: 0; /* Убираем отступы у заголовка */
+}
+
+img {
+                max-width: 80%; /* Ограничиваем ширину изображения */
+                height: auto; /* Автоматически подстраиваем высоту */
+                margin: 0px; /* Отступы вокруг изображений */
+}
+.button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+}
+.button-container {
+            display: flex;
+            justify-content: center; /* Центрирование по горизонтали */
+            height: 100vh; /* Высота контейнера */
+        }
+.text1 {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 90;
+    font-style: italic;
+    font-size: 80px;
+    text-align: center; /* Центрируем текст */
+    margin-top: 0; /* Убираем верхний отступ */
+    display: flex; /* Используем flexbox для центрирования */
+    justify-content: center; /* Горизонтальное центрирование */
+    margin-bottom: 20px;
+}
+table {
+            width: 100%;
+            border-collapse: collapse;
+        }  
+
+</style>
+</head>
+<body>
+    <div class="text1">
+        <h3>Недавние объявления</h3></div>
+        <table>
+            <tr>
+        <div class="product-post">
+            <img src="milk.jpg" alt="Молоко 5 литров" class="product-image">
+            <h1 class="product-title">Молоко 5 литров</h1>
+            <div class="product-category">Категория: Молочные продукты</div>
+            <div class="product-status">Состояние: Сегодняшнее</div>
+            <p class="product-description">Описание товара: свежее молоко 5 литров 01.04.2025</p>
+            <div class="product-price">Цена: 150 рублей/литр</div>
+            <div class="product-address">Адрес: пр. Энгельса 23</div>
+        </div>
+          </tr>
+          <tr>     
+        <div class="product-post">
+            <img src="karasi.jpg" alt="Караси" class="product-image">
+            <h1 class="product-title">Караси</h1>
+            <div class="product-category">Категория: Мясные продукты</div>
+            <div class="product-status">Состояние: Выловлены сегодня утром</div>
+            <p class="product-description">Описание товара: Поймали сегодня утром 20 карасей</p>
+            <div class="product-price">Цена: 160 рублей</div>
+            <div class="product-address">Адрес: ул. Ворошилова 31 к.1</div>
+        </div>
+    </tr>   </table>
+    <div class="button-container">
+     <ul>
+	    <li style="--bg-color: #c1cf00;">
+		    <span class="icon"><i class="Profile"><img src="home3.png" alt="Profile"></i></span>
+		    <span class="text"><a onclick="window.location.href='index.html'">На главную</a></span>
+	    </li>
+		<li style="--bg-color: #0d4740;">
+			<span class="icon"><i class="Profile"><img src="back.png" alt="Profile"></i></span>
+			<span class="text"><a onclick="window.location.href='Календарь2Начало.html'">Назад</a></span>
+		</li>
+        </ul>  
+     </div>
+  
+      
+</body>
+</html>

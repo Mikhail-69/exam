@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+.main {
+    max-width: 1600px;
+    margin: auto auto;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+body {
+    margin: 0; /* Убирает отступы по умолчанию вокруг тела документа */
+	padding: 0; /* Убирает внутренние отступы по умолчанию *//* Устанавливает, что ширина и высота включают padding и border, упрощая управление размерами */
+	font-family: "Alegreya Sans", sans-serif; /* Устанавливает шрифт для текста на странице */ /* Устанавливает сеточный дисплей для тела документа */
+	place-content: center; /* Центрирует содержимое по вертикали и горизонтали */
+	min-height: 100vh; /* Устанавливает минимальную высоту тела документа равной высоте экрана */
+	font-family: 'Poppins';
+
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+ul {
+    margin-left: auto;
+	margin-right: auto;
+	position: relative; /* Устанавливает относительное позиционирование для ul */
+	display: flex; /* Устанавливает флекс-дисплей для ul */
+	gap: 28px; /* станавливает расстояние между элементами списка */
+}
+
+ul li { /* Стили для элементов списка (li) */
+	position: relative; /* Устанавливает относительное позиционирование для li */
+	list-style: none; /* Убирает маркеры списка по умолчанию */
+	width: 72px; /* Устанавливает ширину элемента списка */
+	height: 72px; /* станавливает высоту элемента списка */
+	border-radius: 72px; /* Закругляет углы элемента списка */
+	background: rgb(255, 255, 255); /* Устанавливает белый фон элемента списка */
+	cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент списка */
+	display: flex; /* Устанавливает флекс-дисплей для li */
+	align-items: center; /* центрирует элементы по вертикали в li */
+	justify-content: center; /* центрирует элементы по горизонтали в li */
+	box-shadow: 0 0 0 2px #000; /* Добавляет тень к элементу списк*/
+	transition: 300ms; /* Задает время перехода для анимаций */
+}
+
+ul li:hover { /* Стили для элемента списка при наведении курсора */
+	width: 180px; /* Увеличивает ширину элемента списка при наведении */
+	box-shadow: 0 0 0 2px var(--bg-color); /* Меняет цвет тени при наведении на элемент списка */
+}
+
+ul li::before { /* Псевдоэлемент перед элементом списка */
+	content: ""; /* Задает пустое содержимое для псевдоэлемента */
+	position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента */
+	inset: 0; /* Задает нулевые отступы со всех сторон псевдоэлемента, чтобы он занимал всю площадь родителя */
+	border-radius: 72px; /* Закругляет углы псевдоэлемента  */
+	background: var(--bg-color); /* Задает фон псевдоэлемента, используя переменную цвета фона */
+	opacity: 0; /* Задает начальную непрозрачность псевдоэлемента (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций псевдоэлемента */
+}
+
+ul li:hover::before { /* Стили для псевдоэлемента при наведении на элемент списка */
+	opacity: 1; /* Делает псевдоэлемент видимым при наведении */
+}
+
+ul li span { /* Стили для вложенных элементов span в li */
+	position: absolute; /* Устанавливает абсолютное позиционирование для span */
+}
+
+ul li i { /* Стили для иконок внутри элемента списка (i) */
+	color: rgb(0, 0, 0); /* Устанавливает черный цвет для иконки */
+	font-size: 2em; /* Задает размер шрифта для иконки */
+	transition: 300ms; /* Задает время перехода для анимаций иконки */
+	transition-delay: 150ms;  /* Задает задержку перед началом анимации иконки */
+}
+
+ul li:hover i { /* стили для иконки при наведении на элемент списка  */
+	transform: scale(0); /* Уменьшает размер иконки до нуля при наведении */
+	color: #fff; /* Меняет цвет иконки на белый при наведении */
+	transition-delay: 0s; /* Убирает задержку перед началом анимации иконки при наведении */
+}
+
+ul li .text { /* Стили для текста внутри элемента списка (span с классом text) */
+	color: #fff; /* Устанавливает белый цвет текста */
+	font-size: 1.5em; /* Задает размер шрифта для текста */
+	z-index: 1; /* Устанавливает уровень наложения текста над другими элементами */
+	text-transform: uppercase; /* Преобразует текст в верхний регистр */
+	font-weight: 400; /* Задает толщину шрифта для текста */
+	letter-spacing: 0.024em; /* Устанавливает расстояние между буквами текста */
+	opacity: 0; /* Задает начальную непрозрачность текста (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций текста */
+	letter-spacing: -0.125px; /* Задает отрицательное расстояние между буквами текста */
+}
+
+ul li:hover .text { /* Стили для текста при наведении на элемент списка */
+	opacity: 1; /* Делает текст видимым при наведении */
+} 
+ .icon {  
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    margin-left: 18%;
+    padding-top: 10px;
+	background-color: rgba(255, 255, 255, 0);
+}
+.button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+.video-background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+}
+.content {
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-align: center;
+        padding: 20px;
+}
+.video-bg {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.video-bg video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+.effects {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+}
+.video-bg__content {
+    z-index: 2;
+    color: #ffffff;
+    font-size: 35px;
+
+}
+h1{
+	font-size: 250px;
+}
+h4{
+	padding: auto;
+}
+table{
+		border: 0px;
+        width: 1300px;
+        height: auto;
+      }
+	  td{
+		  border: 0px;
+		 
+	  }
+	  tr{
+		   height: 250px;
+	  }
+
+</style>
+</head>
+<body>
+    <div class="video-bg">
+        <video src="vecteezy_brown-cow-in-sunlit-field-close-up_47658430.mp4" type="video/mp4" autoplay muted loop></video>
+        <div class="effects"></div>
+        <div class="video-bg__content">
+           <center>
+			   <h1>Заказать</h1>
+		   </center>	
+
+
+		   <table border="1">
+			<tr>
+				<td>
+     <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <center><h2>Ксения Ларкина</h2>
+            <p>Молочка</p></center>
+          </div>
+          <span class="card-back">
+            <a onclick="window.location.href='index.html'">
+				<center><h4>От Вас 1 час 50 мин</h4>
+            <p>г. Тосно</p></center>
+            </a>
+        </span>
+    </div>
+</div></td><td>
+    <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <center><h2>Настя Лебедева</h2>
+            <p>Овощи и фрукты</p></center>
+          </div>
+          <span class="card-back">
+            <a onclick="window.location.href='index.html'">
+			<center><h4>От Вас 1 час 5 мин</h4>
+            <p>Метро Купчино</p></center>
+            </a>
+        </span>
+    </div>
+    </div>
+</td>
+<tr>
+	<td>
+<div class="card">
+<div class="card-inner">
+<div class="card-front">
+	<center><h2>Елизавета Адушева</h2>
+<p>Ягоды и тыквины</p></center>
+</div>
+<span class="card-back">
+<a onclick="window.location.href='index.html'">
+	<center><h4>От Вас 43 мин</h4>
+<p>г. Мурино</p></center>
+</a>
+</span>
+</div>
+</div></td><td>
+<div class="card">
+<div class="card-inner">
+<div class="card-front">
+	<center><h2>Мария Коробкова</h2>
+<p>Мед</p></center>
+</div>
+<span class="card-back">
+<a onclick="window.location.href='index.html'">
+	<center><h4>От Вас 1 час 10 мин</h4>
+<p>г. Токсово</p></center>
+</a>
+</span>
+</div>
+</div>
+</td>
+
+</table>
+</div>
+</div>
+
+</body>
+</html>

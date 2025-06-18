@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объявления</title>
+</head>
+<body>
+    <h1>Список объявлений</h1>
+    <div id="adsList"></div>
+
+    <script>
+        window.onload = function() {
+            const ads = JSON.parse(localStorage.getItem('ads')) || [];
+            const adsList = document.getElementById('adsList');
+
+            if (ads.length === 0) {
+                adsList.innerHTML = '<p>Нет объявлений.</p>';
+                return;
+            }
+
+            ads.forEach(ad => {
+                const adItem = document.createElement('div');
+                adItem.innerHTML = 
+                   <h3>${ad.name}</h3>
+                    <p>Категория: ${ad.category}</p>
+                    <p>Состояние: ${ad.condition}</p>
+                    <p>${ad.description}</p>
+                    <p>Цена: ${ad.price} ₽</p>
+                    ${ad.photo ? <img src="${ad.photo}" alt="${ad.name}" style="max-width: 200px;"/> : ''}
+                ;
+                adsList.appendChild(adItem);
+            });
+        };
+    </script>
+</body>
+</html>
