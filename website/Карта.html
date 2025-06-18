@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Карта</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Цвет фона страницы */
+        }
+        .search-container {
+            width: 100%;
+            position: absolute;
+            top: 0px; /* Отступ сверху */
+            left: 0;
+            padding: 10px; /* Отступы внутри контейнера */
+            background-color: white; /* Цвет фона поля поиска */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для поля поиска */
+            z-index: 10; /* Устанавливаем z-index выше, чтобы поле поиска было над картой */
+        }
+        .filtr-container {
+            width: 100%;
+            position: absolute;
+            top: 80px; /* Отступ сверху */
+            left: 0;
+            padding: 10px; /* Отступы внутри контейнера */
+            background-color: white; /* Цвет фона поля фильтрации */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для поля фильтрации */
+            z-index: 10; /* Устанавливаем z-index выше, чтобы поле фильтрации было над картой */
+        }
+        .search-input {
+            
+            width: calc(100% - 22px); /* Ширина с учетом отступов */
+            padding: 10px; /* Отступы внутри поля ввода */
+            border: 1px solid #ccc; /* Рамка поля ввода */
+            border-radius: 5px; /* Скругление углов */
+            font-size: 16px; /* Размер шрифта */
+        }
+        .filter-label {
+            margin-right: 10px; /* Отступ справа от метки */
+        }
+        .filter-select {
+            padding: 10px; /* Отступы внутри выпадающего списка */
+            border: 1px solid #ccc; /* Рамка выпадающего списка */
+            border-radius: 5px; /* Скругление углов */
+        }
+        .container {
+            position: relative;
+            overflow: hidden;
+            max-width: 100%; /* Максимальная ширина контейнера */
+            height: 0; /* Высота будет зависеть от соотношения сторон */
+            padding-bottom: 50%; /* Соотношение сторон 16:9 (можно изменить) */
+        }
+        .map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .back-button {
+            margin: 0;
+            height: 4vh; /* Высота на весь экран */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Распределяем пространство между элементами */
+        }
+
+        .back-button {
+            position: relative; /* Меняем на relative для правильного позиционирования */
+            margin: auto; /* Центрируем по горизонтали с отступом снизу */
+            padding: 10px 15px; /* Отступы внутри кнопки */
+            background-color: #ffc400; /* Цвет фона кнопки */
+            color: white; /* Цвет текста кнопки */
+            border: none; /* Убираем рамку */
+            border-radius: 10px; /* Скругление углов */
+            cursor: pointer; /* Указатель при наведении */
+            text-decoration: none; /* Убираем подчеркивание */
+            z-index: 10;
+        }
+        .back-button:hover {
+            background-color: #d0ff00; /* Цвет фона при наведении */
+        }
+        .recent-queries {
+            width: 100%;
+            position: absolute;
+            top: 135px; /* Отступ сверху (ниже фильтров) */
+            left: 0;
+            padding: 10px; /* Отступы внутри контейнера */
+            background-color: white; /* Цвет фона для недавних запросов */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для контейнера недавних запросов */
+            z-index: 10; /* Устанавливаем z-index выше, чтобы контейнер был над картой */
+        }
+        .recent-queries h3 {
+            margin-top: 0; /* Убираем верхний отступ заголовка */
+        }
+        .recent-queries ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0; /* Убираем отступы */
+        }
+        .recent-queries li {
+            margin: 5px 0; /* Отступы между элементами списка */
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Поиск...">
+        <button id="searchButton">Поиск</button>
+    </div>
+    <div class="filtr-container">
+        <label class="filter-label">Фильтры поиска:</label>
+        <select class="filter-select">
+            <option value="all">Все</option>
+            <option value="bakery">Молочка</option>
+            <option value="greenery">Зелень</option>
+            <option value="vegetables">Овощи</option>
+            <option value="fruitы">Фрукты</option>
+            <option value="Berries">Ягоды</option>
+        </select>
+    </div>
+    <div class="recent-queries">
+        <h3>Недавние запросы</h3>
+        <ul id="recentQueriesList"></ul>
+    </div>
+    <div id="map">
+        <div style="position:relative;overflow:hidden;">
+            <a href="https://yandex.ru/maps/2/saint-petersburg/search/%D0%BF%D0%B5%D0%BA%D0%B0%D1%80%D0%BD%D0%B8/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">пекарни в Санкт‑Петербурге</a>
+            <a href="https://yandex.ru/maps/2/saint-petersburg/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Санкт‑Петербург</a>
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=30.314997%2C59.938784&mode=search&sll=30.314997%2C59.938784&sspn=0.273972%2C0.278044&text=%D0%BF%D0%B5%D0%BA%D0%B0%D1%80%D0%BD%D0%B8&z=11" width="100%" height="900" frameborder="1" allowfullscreen="true" style="position:relative;">
+            </iframe>
+        </div>
+    </div>
+    <button class="back-button"> <a onclick="window.location.href='index.html'">На главную</a></button>
+    <script>
+        const recentQueriesList = document.getElementById('recentQueriesList');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+    
+        // Получаем историю запросов из локального хранилища
+        const getRecentQueries = () => {
+            const queries = JSON.parse(localStorage.getItem('recentQueries')) || [];
+            return queries;
+        };
+    
+        // Сохраняем новый запрос в локальное хранилище
+        const saveQuery = (query) => {
+            const queries = getRecentQueries();
+            // Если запрос уже есть в истории, удаляем его
+            const filteredQueries = queries.filter(q => q !== query);
+            // Добавляем новый запрос в начало списка
+            filteredQueries.unshift(query);
+            // Сохраняем обновленный список в локальное хранилище
+            localStorage.setItem('recentQueries', JSON.stringify(filteredQueries));
+        };
+    
+        // Обновляем отображение списка недавних запросов
+        const updateRecentQueriesDisplay = () => {
+            const queries = getRecentQueries();
+            recentQueriesList.innerHTML = ''; // Очищаем текущее содержимое
+            queries.forEach(query => {
+                const li = document.createElement('li');
+                li.textContent = query;
+                recentQueriesList.appendChild(li);
+            });
+        };
+    
+        // Обработчик события для кнопки поиска
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                saveQuery(query); // Сохраняем запрос
+                updateRecentQueriesDisplay(); // Обновляем отображение
+                searchInput.value = ''; // Очищаем поле ввода
+            }
+        });
+    
+        // Инициализация списка недавних запросов при загрузке страницы
+        updateRecentQueriesDisplay();
+    </script>
+</body>
+</html>

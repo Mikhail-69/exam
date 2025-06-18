@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки</title>
+    <style>
+        body {
+            transition: background-color 0.3s;
+			margin: 0; /* Убирает отступы по умолчанию вокруг тела документа */
+	padding: 0; /* Убирает внутренние отступы по умолчанию */
+	box-sizing: border-box; /* Устанавливает, что ширина и высота включают padding и border, упрощая управление размерами */
+	font-family: "Alegreya Sans", sans-serif; /* Устанавливает шрифт для текста на странице */
+	display: grid; /*  Устанавливает сеточный дисплей для тела документа */
+	place-content: center; /* Центрирует содержимое по вертикали и горизонтали */
+	min-height: 100vh; /* Устанавливает минимальную высоту тела документа равной высоте экрана */
+        }
+        .dark-theme {
+            background-color: #333;
+            color: rgb(255, 255, 255);
+        }
+  
+
+ul {
+    margin-left: 83px;
+	position: relative; /* Устанавливает относительное позиционирование для ul */
+	display: flex; /* Устанавливает флекс-дисплей для ul */
+	gap: 28px; /* станавливает расстояние между элементами списка */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul li { /* Стили для элементов списка (li) */
+	position: relative; /* Устанавливает относительное позиционирование для li */
+	list-style: none; /* Убирает маркеры списка по умолчанию */
+	width: 72px; /* Устанавливает ширину элемента списка */
+	height: 72px; /* станавливает высоту элемента списка */
+	border-radius: 72px; /* Закругляет углы элемента списка */
+	background: rgb(255, 255, 255); /* Устанавливает белый фон элемента списка */
+	cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент списка */
+	display: flex; /* Устанавливает флекс-дисплей для li */
+	align-items: center; /* центрирует элементы по вертикали в li */
+	justify-content: center; /* центрирует элементы по горизонтали в li */
+	box-shadow: 0 0 0 2px #000; /* Добавляет тень к элементу списк*/
+	transition: 300ms; /* Задает время перехода для анимаций */
+}
+
+ul li:hover { /* Стили для элемента списка при наведении курсора */
+	width: 180px; /* Увеличивает ширину элемента списка при наведении */
+	box-shadow: 0 0 0 2px var(--bg-color); /* Меняет цвет тени при наведении на элемент списка */
+}
+
+ul li::before { /* Псевдоэлемент перед элементом списка */
+	content: ""; /* Задает пустое содержимое для псевдоэлемента */
+	position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента */
+	inset: 0; /* Задает нулевые отступы со всех сторон псевдоэлемента, чтобы он занимал всю площадь родителя */
+	border-radius: 72px; /* Закругляет углы псевдоэлемента  */
+	background: var(--bg-color); /* Задает фон псевдоэлемента, используя переменную цвета фона */
+	opacity: 0; /* Задает начальную непрозрачность псевдоэлемента (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций псевдоэлемента */
+}
+
+ul li:hover::before { /* Стили для псевдоэлемента при наведении на элемент списка */
+	opacity: 1; /* Делает псевдоэлемент видимым при наведении */
+}
+
+ul li span { /* Стили для вложенных элементов span в li */
+	position: absolute; /* Устанавливает абсолютное позиционирование для span */
+}
+
+ul li i { /* Стили для иконок внутри элемента списка (i) */
+	color: rgb(0, 0, 0); /* Устанавливает черный цвет для иконки */
+	font-size: 2em; /* Задает размер шрифта для иконки */
+	transition: 300ms; /* Задает время перехода для анимаций иконки */
+	transition-delay: 150ms;  /* Задает задержку перед началом анимации иконки */
+}
+
+ul li:hover i { /* стили для иконки при наведении на элемент списка  */
+	transform: scale(0); /* Уменьшает размер иконки до нуля при наведении */
+	color: #fff; /* Меняет цвет иконки на белый при наведении */
+	transition-delay: 0s; /* Убирает задержку перед началом анимации иконки при наведении */
+}
+
+ul li .text { /* Стили для текста внутри элемента списка (span с классом text) */
+	color: #fff; /* Устанавливает белый цвет текста */
+	font-size: 1.5em; /* Задает размер шрифта для текста */
+	z-index: 1; /* Устанавливает уровень наложения текста над другими элементами */
+	text-transform: uppercase; /* Преобразует текст в верхний регистр */
+	font-weight: 400; /* Задает толщину шрифта для текста */
+	letter-spacing: 0.024em; /* Устанавливает расстояние между буквами текста */
+	opacity: 0; /* Задает начальную непрозрачность текста (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций текста */
+	letter-spacing: -0.125px; /* Задает отрицательное расстояние между буквами текста */
+}
+
+ul li:hover .text { /* Стили для текста при наведении на элемент списка */
+	opacity: 1; /* Делает текст видимым при наведении */
+}
+ .icon {  
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    margin-left: 18%;
+    padding-top: 10px;
+	background-color: rgba(255, 255, 255, 0);
+}
+.text1{
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 100PX;
+}
+img {
+                max-width: 80%; /* Ограничиваем ширину изображения */
+                height: auto; /* Автоматически подстраиваем высоту */
+                margin: 0px; /* Отступы вокруг изображений */
+}
+.button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+		.dark-theme {
+    background-color: #333;
+    color: white; /* Цвет текста в темной теме */
+}
+
+.light-theme {
+    background-color: white; /* Цвет фона в светлой теме */
+    color: black; /* Цвет текста в светлой теме */
+}
+
+    </style>
+</head>
+<body>
+
+<div class="text1">
+    <center><h3 id="title">Настройки</h3></center>
+</div>
+<h1 id="description">Яркость сайта</h1>
+<div class="slider-container">
+    <input type="range" id="myRange" min="0" max="100" value="50">
+    <div class="value">Значение: <span id="sliderValue">50</span></div>
+</div>
+<p></p>
+<button class="toggle-button" id="themeToggle">Переключить тему</button>
+<select id="language-selector">
+    <option value="ru" selected>Русский</option>
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+    <option value="es">Español</option>
+    <option value="ar">العربية</option>
+    <option value="hi">हिन्दी</option>
+    <option value="bn">বাংলা</option>
+    <option value="pt">Português</option>
+    <option value="ja">日本語</option>
+    <option value="pl">Polski</option>
+    <option value="fr">français</option>
+    <option value="it">Italiano</option>
+</select>
+
+<ul>
+    <li style="--bg-color: #00a708;">
+        <span class="icon"><i class="Profile"><img src="cf58342cc7f1370bc717a61c33ff9c96.png" alt="Profile"></i></span>
+        <span class="text"><a id="saveButton" href="#">Сохранить</a></span>
+    </li>
+    <li style="--bg-color: #f0de3c;">
+        <span class="icon"><i class="Profile"><img src="home3.png" alt="Profile"></i></span>
+        <span class="text"><a onclick="window.location.href='index.html'">На главную</a></span>
+    </li>
+    <li style="--bg-color: #47144e;">
+        <span class="icon"><i class="Profile"><img src="back.png" alt="Profile"></i></span>
+        <span class="text"><a onclick="window.location.href='ЛичныйКабинет.html'">Назад</a></span>
+    </li>
+</ul>
+
+<script>
+    const slider = document.getElementById('myRange');
+    const output = document.getElementById('sliderValue');
+    const toggleButton = document.getElementById('themeToggle');
+    const body = document.body;
+    const languageSelector = document.getElementById('language-selector');
+
+    // Отображение начального значения
+    output.textContent = slider.value;
+
+    // Восстановление настроек из localStorage
+    function restoreSettings() {
+        const savedBrightness = localStorage.getItem('brightness');
+        const savedLanguage = localStorage.getItem('language');
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedBrightness) {
+            slider.value = savedBrightness;
+            output.textContent = savedBrightness;
+        }
+
+        if (savedLanguage) {
+            languageSelector.value = savedLanguage;
+            updateLanguage(savedLanguage);
+        }
+
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            toggleButton.textContent = 'Переключить на светлую тему';
+        } else {
+            toggleButton.textContent = 'Переключить на темную тему';
+        }
+    }
+
+    // Обновление языка
+    function updateLanguage(language) {
+        // Здесь должен быть ваш код для обновления текста на странице в зависимости от языка
+        // Например:
+        const translations = {
+            'ru': { title: 'Настройки', description: 'Яркость сайта' },
+            'en': { title: 'Settings', description: 'Website Brightness' },
+			'zh': {
+        title: '设置',
+        description: '网站亮度'
+    },
+    'ar': {
+        title: 'الإعدادات',
+        description: 'سطوع الموقع'
+    },
+    'hi': {
+        title: 'सेटिंग्स',
+        description: 'वेबसाइट की चमक'
+    },
+    'bn': {
+        title: 'সেটিংস',
+        description: 'ওয়েবসাইটের উজ্জ্বলতা'
+    },
+    'pt': {
+        title: 'Configurações',
+        description: 'Brilho do site'
+    },
+    'ja': {
+        title: '設定',
+        description: 'ウェブサイトの明るさ'
+    },
+    'pl': {
+        title: 'Ustawienia',
+        description: 'Jasność strony'
+    },
+    'fr': {
+        title: 'Paramètres',
+        description: 'Luminosité du site'
+    },
+    'it': {
+        title: 'Impostazioni',
+        description: 'Luminosità del sito'
+    },
+    'es': {
+        title: 'Configuraciones',
+        description: 'Brillo del sitio web'
+    }
+            // Добавьте другие языки...
+        };
+
+        document.getElementById('title').textContent = translations[language].title;
+        document.getElementById('description').textContent = translations[language].description;
+        localStorage.setItem('language', language);
+    }
+
+    // Сохранение настроек
+    document.getElementById('saveButton').addEventListener('click', (event) => {        event.preventDefault();
+        localStorage.setItem('brightness', slider.value);
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        
+        alert('Настройки сохранены!');
+    });
+
+    // Обновление значения при изменении слайдера
+    slider.oninput = function() {
+        output.textContent = this.value;
+    };
+
+    // Переключение темы
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        toggleButton.textContent = body.classList.contains('dark-theme') ? 'Переключить на светлую тему' : 'Переключить на темную тему';
+        
+        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+    });
+
+    // Обработчик изменения языка
+    languageSelector.addEventListener('change', (event) => {
+        updateLanguage(event.target.value);
+    });
+
+    // Восстановление настроек при загрузке страницы
+    restoreSettings();
+</script>
+
+</body>
+</html>

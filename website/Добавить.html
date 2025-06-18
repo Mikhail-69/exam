@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap");
+        /* Импортирует шрифт Alegreya Sans из Google Fonts */
+        body {
+            margin: 0; /* Убирает отступы по умолчанию вокруг тела документа */
+            padding: 0; /* Убирает внутренние отступы по умолчанию */
+            box-sizing: border-box; /* Устанавливает, что ширина и высота включают padding и border, упрощая управление размерами */
+            font-family: "Alegreya Sans", sans-serif; /* Устанавливает шрифт для текста на странице */
+            display: grid; /* Устанавливает сеточный дисплей для тела документа */
+            place-content: center; /* Центрирует содержимое по вертикали и горизонтали */
+            min-height: 100vh; /* Устанавливает минимальную высоту тела документа равной высоте экрана */
+            background-image: url(Cow-Photoroom.png);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: 600px center;
+            background-size: 1000px 1000px;
+        }
+        
+        ul {
+            margin-left: 50px;
+            position: relative; /* Устанавливает относительное позиционирование для ul */
+            display: flex; /* Устанавливает флекс-дисплей для ul */
+            gap: 28px; /* станавливает расстояние между элементами списка */
+        }
+        ul li { /* Стили для элементов списка (li) */
+            position: relative; /* Устанавливает относительное позиционирование для li */
+            list-style: none; /* Убирает маркеры списка по умолчанию */
+            width: 72px; /* Устанавливает ширину элемента списка */
+            height: 72px; /* станавливает высоту элемента списка */
+            border-radius: 72px; /* Закругляет углы элемента списка */
+            background: rgb(255, 255, 255); /* Устанавливает белый фон элемента списка */
+            cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент списка */
+            display: flex; /* Устанавливает флекс-дисплей для li */
+            align-items: center; /* центрирует элементы по вертикали в li */
+            justify-content: center; /* центрирует элементы по горизонтали в li */
+            box-shadow: 0 0 0 2px #000; /* Добавляет тень к элементу списк*/
+            transition: 300ms; /* Задает время перехода для анимаций */
+        }
+        ul li:hover { /* Стили для элемента списка при наведении курсора */
+            width: 180px; /* Увеличивает ширину элемента списка при наведении */
+            box-shadow: 0 0 0 2px var(--bg-color); /* Меняет цвет тени при наведении на элемент списка */
+        }
+        ul li::before { /* Псевдоэлемент перед элементом списка */
+            content: ""; /* Задает пустое содержимое для псевдоэлемента */
+            position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента */
+            inset: 0; /* Задает нулевые отступы со всех сторон псевдоэлемента, чтобы он занимал всю площадь родителя */
+            border-radius: 72px; /* Закругляет углы псевдоэлемента  */
+            background: var(--bg-color); /* Задает фон псевдоэлемента, используя переменную цвета фона */
+            opacity: 0; /* Задает начальную непрозрачность псевдоэлемента (невидимый) */
+            transition: 300ms; /* Задает время перехода для анимаций псевдоэлемента */
+        }
+        ul li:hover::before { /* Стили для псевдоэлемента при наведении на элемент списка */
+            opacity: 1; /* Делает псевдоэлемент видимым при наведении */
+        }
+        ul li span { /* Стили для вложенных элементов span в li */
+            position: absolute; /* Устанавливает абсолютное позиционирование для span */
+        }
+        ul li i { /* Стили для иконок внутри элемента списка (i) */
+            color: rgb(0, 0, 0); /* Устанавливает черный цвет для иконки */
+            font-size: 2em; /* Задает размер шрифта для иконки */
+            transition: 300ms; /* Задает время перехода для анимаций иконки */
+            transition-delay: 150ms;  /* Задает задержку перед началом анимации иконки */
+        }
+        ul li:hover i { /* стили для иконки при наведении на элемент списка  */
+            transform: scale(0); /* Уменьшает размер иконки до нуля при наведении */
+            color: #fff; /* Меняет цвет иконки на белый при наведении */
+            transition-delay: 0s; /* Убирает задержку перед началом анимации иконки при наведении */
+        }
+        ul li .text { /* Стили для текста внутри элемента списка (span с классом text) */
+            color: #fff; /* Устанавливает белый цвет текста */
+            font-size: 1.5em; /* Задает размер шрифта для текста */
+            z-index: 1; /* Устанавливает уровень наложения текста над другими элементами */
+            text-transform: uppercase; /* Преобразует текст в верхний регистр */
+            font-weight: 400; /* Задает толщину шрифта для текста */
+            letter-spacing: 0.024em; /* Устанавливает расстояние между буквами текста */
+            opacity: 0; /* Задает начальную непрозрачность текста (невидимый) */
+            transition: 300ms; /* Задает время перехода для анимаций текста */
+            letter-spacing: -0.125px; /* Задает отрицательное расстояние между буквами текста */
+        }
+        ul li:hover .text { /* Стили для текста при наведении на элемент списка */
+            opacity: 1; /* Делает текст видимым при наведении */
+        }
+         .icon {  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 18%;
+            padding-top: 10px;
+            background-color: rgba(255, 255, 255, 0);
+        }
+        .text1{
+            font-family: "Roboto", sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            font-size: 80PX;
+        }
+        img {
+                        max-width: 80%; /* Ограничиваем ширину изображения */
+                        height: auto; /* Автоматически подстраиваем высоту */
+                        margin: 0px; /* Отступы вокруг изображений */
+        }
+        .button {
+            padding: 30px 30px;
+            margin: 5px;
+            background-color: transparent; /* Убираем фон */
+            border: none; /* Убираем рамку */
+            color: transparent; /* Делаем текст прозрачным */
+            cursor: pointer; /* Курсор при наведении */
+            font-size: 16px; /* Размер шрифта */
+            position: relative; /* Для позиционирования псевдоэлемента */
+            overflow: hidden; /* Скрываем содержимое, если оно выходит за пределы кнопки */
+        }
+        
+        .button::after {
+            content: "Сохранить"; /* Текст, который появится при наведении */
+            color: white; /* Цвет текста */
+            position: absolute; /* Позиционируем текст относительно кнопки */
+            left: 50%; /* Центрируем по горизонтали */
+            top: 50%; /* Центрируем по вертикали */
+            transform: translate(-50%, -50%); /* Центрируем текст */
+            opacity: 0; /* Начальная прозрачность текста */
+            transition: opacity 0.3s ease; /* Плавный переход для прозрачности */
+        }
+        
+        .button:hover::after {
+            opacity: 1; /* Текст становится видимым при наведении */
+        }
+        
+        .button:hover {
+            color: transparent; /* Скрываем основной текст кнопки при наведении */
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        
+            </style>
+</head>
+<body>
+    <form id="adForm" onsubmit="event.preventDefault(); saveAd();">
+        <div class="text1">
+            <center><h3>Новое объявление</h3></center>
+        </div>
+        <p><font>Внешний вид</font></p>            
+        <label for="photo">Добавить фото:</label><br>
+        <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+        
+        <p><font>Укажите название</font></p>
+        <p><input type="text" size="30" id="name" required></p>
+        
+        <p><font>Выберите категорию</font></p>
+        <select id="category">
+            <option value="Молочные продукты">Молочные продукты</option>
+            <option value="Фрукты и ягоды">Фрукты и ягоды</option>
+            <option value="Зерновые и бобы">Зерновые и бобы</option>
+            <option value="Мясные продукты">Мясные продукты</option>
+            <option value="Кондитерские изделия">Кондитерские изделия</option>
+            <option value="Овощи">Овощи</option>
+            <option value="Вода">Вода</option>
+            <option value="Другое">Другое</option>
+        </select>
+        
+        <p><font>Состояние</font></p>
+        <p><input type="text" size=30 id="condition" required></p>
+        
+        <p><font>Описание товара</font></p>
+        <p><textarea size="30" id="description" required maxlength="500" minlength="5"></textarea></p>
+        
+        <p><font>Условие товара</font></p>
+        <p>
+            <input id="priceInput" type="text" size="5" name="Цена" required oninput="updatePrice()" placeholder="Введите цену"/>
+            <span id="currencySymbol">₽</span>
+        </p>
+    
+        <script>
+            function updatePrice() {
+                const input = document.getElementById('priceInput');
+                input.value = input.value.replace(/[^0-9]/g, '');
+            }
+    
+            function saveAd() {
+                const photo = document.getElementById('photo').files[0];
+                const name = document.getElementById('name').value;
+                const category = document.getElementById('category').value;
+                const condition = document.getElementById('condition').value;
+                const description = document.getElementById('description').value;
+                const price = document.getElementById('priceInput').value;
+    
+                const ad = {
+                    name,
+                    category,
+                    condition,
+                    description,
+                    price,
+                    photo: photo ? URL.createObjectURL(photo) : null
+                };
+    
+                const ads = JSON.parse(localStorage.getItem('ads')) || [];
+                ads.push(ad);
+                localStorage.setItem('ads', JSON.stringify(ads));
+    
+                window.location.href = 'Календарь.html';
+            }
+        </script>
+    
+        <p><font>Укажите ваш адрес</font></p>
+        <p><input type="text" size="30" name="secondName" value="" required></p>
+    
+        <ul>
+            <li style="--bg-color: #4f2af5;">
+                <span class="icon"><i class="save-button"><img src="4624acd2dfd851ced1c762612bccb438.png" alt="Profile"></i></span>
+                <span class="text"><button type="submit" class="button save-button">Сохранить</button></span>
+            </li>
+            <li style="--bg-color: #43ffb7;">
+                <span class="icon"><i class="Profile"><img src="home3.png" alt="Profile"></i></span>
+                <span class="text"><a onclick="window.location.href='index.html'">На главную</a></span>
+            </li>
+        </ul>
+    </form>    
+</body>
+</html>

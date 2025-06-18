@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aboutMe</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/phosphor-icons/1.4.2/phosphor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+	<style>
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap");
+/* Импортирует шрифт Alegreya Sans из Google Fonts */
+body {
+    margin: 0; /* Убирает отступы по умолчанию вокруг тела документа */
+	padding: 0; /* Убирает внутренние отступы по умолчанию */
+	box-sizing: border-box; /* Устанавливает, что ширина и высота включают padding и border, упрощая управление размерами */
+	font-family: "Alegreya Sans", sans-serif; /* Устанавливает шрифт для текста на странице */
+	display: grid; /* Устанавливает сеточный дисплей для тела документа */
+	place-content: center; /* Центрирует содержимое по вертикали и горизонтали */
+	min-height: 100vh; /* Устанавливает минимальную высоту тела документа равной высоте экрана */
+
+}
+
+ul {
+    margin-left: auto;
+	margin-right: auto;
+	position: relative; /* Устанавливает относительное позиционирование для ul */
+	display: flex; /* Устанавливает флекс-дисплей для ul */
+	gap: 28px; /* станавливает расстояние между элементами списка */
+}
+
+ul li { /* Стили для элементов списка (li) */
+	position: relative; /* Устанавливает относительное позиционирование для li */
+	list-style: none; /* Убирает маркеры списка по умолчанию */
+	width: 72px; /* Устанавливает ширину элемента списка */
+	height: 72px; /* станавливает высоту элемента списка */
+	border-radius: 72px; /* Закругляет углы элемента списка */
+	background: rgb(255, 255, 255); /* Устанавливает белый фон элемента списка */
+	cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент списка */
+	display: flex; /* Устанавливает флекс-дисплей для li */
+	align-items: center; /* центрирует элементы по вертикали в li */
+	justify-content: center; /* центрирует элементы по горизонтали в li */
+	box-shadow: 0 0 0 2px #000; /* Добавляет тень к элементу списк*/
+	transition: 300ms; /* Задает время перехода для анимаций */
+}
+
+ul li:hover { /* Стили для элемента списка при наведении курсора */
+	width: 180px; /* Увеличивает ширину элемента списка при наведении */
+	box-shadow: 0 0 0 2px var(--bg-color); /* Меняет цвет тени при наведении на элемент списка */
+}
+
+ul li::before { /* Псевдоэлемент перед элементом списка */
+	content: ""; /* Задает пустое содержимое для псевдоэлемента */
+	position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента */
+	inset: 0; /* Задает нулевые отступы со всех сторон псевдоэлемента, чтобы он занимал всю площадь родителя */
+	border-radius: 72px; /* Закругляет углы псевдоэлемента  */
+	background: var(--bg-color); /* Задает фон псевдоэлемента, используя переменную цвета фона */
+	opacity: 0; /* Задает начальную непрозрачность псевдоэлемента (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций псевдоэлемента */
+}
+
+ul li:hover::before { /* Стили для псевдоэлемента при наведении на элемент списка */
+	opacity: 1; /* Делает псевдоэлемент видимым при наведении */
+}
+
+ul li span { /* Стили для вложенных элементов span в li */
+	position: absolute; /* Устанавливает абсолютное позиционирование для span */
+}
+
+ul li i { /* Стили для иконок внутри элемента списка (i) */
+	color: rgb(0, 0, 0); /* Устанавливает черный цвет для иконки */
+	font-size: 2em; /* Задает размер шрифта для иконки */
+	transition: 300ms; /* Задает время перехода для анимаций иконки */
+	transition-delay: 150ms;  /* Задает задержку перед началом анимации иконки */
+}
+
+ul li:hover i { /* стили для иконки при наведении на элемент списка  */
+	transform: scale(0); /* Уменьшает размер иконки до нуля при наведении */
+	color: #fff; /* Меняет цвет иконки на белый при наведении */
+	transition-delay: 0s; /* Убирает задержку перед началом анимации иконки при наведении */
+}
+
+ul li .text { /* Стили для текста внутри элемента списка (span с классом text) */
+	color: #fff; /* Устанавливает белый цвет текста */
+	font-size: 1.5em; /* Задает размер шрифта для текста */
+	z-index: 1; /* Устанавливает уровень наложения текста над другими элементами */
+	text-transform: uppercase; /* Преобразует текст в верхний регистр */
+	font-weight: 400; /* Задает толщину шрифта для текста */
+	letter-spacing: 0.024em; /* Устанавливает расстояние между буквами текста */
+	opacity: 0; /* Задает начальную непрозрачность текста (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций текста */
+	letter-spacing: -0.125px; /* Задает отрицательное расстояние между буквами текста */
+}
+
+ul li:hover .text { /* Стили для текста при наведении на элемент списка */
+	opacity: 1; /* Делает текст видимым при наведении */
+}
+ .icon {  
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    margin-left: 18%;
+    padding-top: 10px;
+	background-color: rgba(255, 255, 255, 0);
+}
+.text1{
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 80PX;
+}
+img {
+                max-width: 80%; /* Ограничиваем ширину изображения */
+                height: auto; /* Автоматически подстраиваем высоту */
+                margin: 0px; /* Отступы вокруг изображений */
+}
+.button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+}
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  padding-left: 20px;
+}
+.colorList{
+	background-color: #e0a46c;
+	margin: -60px 150px 0px 150px ;
+	border-radius: 50px;
+	padding-left: 30px;
+	padding-right: 30px;
+	color: rgb(0, 0, 0);
+}
+    </style>
+</head>
+<body>
+        <div class="text1">
+        <center><h4>О нас</h4> </center></div> 
+		<div class="colorList">
+		<div class="roboto-bold"><p>Добро пожаловать в CowWow!</p></div> 
+
+Мы — команда энтузиастов, стремящихся соединить местных фермеров и покупателей, которые 
+ценят свежие, натуральные продукты. Наша цель — создать платформу, где вы можете легко 
+найти и поддержать фермеров и рынки в вашем районе.
+
+<div class="roboto-bold"><p>Наша миссия</p></div>
+Мы верим в силу местного производства. Поддерживая фермеров, вы не только получаете 
+доступ к качественным продуктам, но и способствуете устойчивому развитию вашего региона.
+ Мы работаем над тем, чтобы сделать этот процесс простым и удобным для всех.
+
+ <div class="roboto-bold"><p>Что мы предлагаем</p></div><i>
+<p>• Поиск местных фермеров: Найдите фермеров рядом с вами, которые предлагают свежие 
+овощи, фрукты, молочные продукты и многое другое.</p>
+
+<p>• Информация о рынках: Узнайте о ближайших фермерских рынках, их расписании и ассортименте.</p>
+
+<p>• Сообщество: Присоединяйтесь к нашей дружной команде любителей натуральных продуктов.
+ Делитесь опытом, рецептами и находками с другими пользователями.</p></i>
+
+ <div class="roboto-bold"><p>Почему CowWow?</p></div>
+Мы стремимся к прозрачности и качеству. На нашей платформе вы найдете только проверенных
+фермеров, которые заботятся о своих продуктах и окружающей среде. Мы поддерживаем принципы
+устойчивого сельского хозяйства и готовы делиться знаниями о здоровом питании.
+
+<div class="roboto-bold"><p>Присоединяйтесь</p> </div>
+К нам в путешествии к более здоровому образу жизни и поддержите местное производство! 
+Вместе мы можем сделать мир лучше — шаг за шагом, продукт за продуктом.
+
+<div class="roboto-bold"><p>С любовью,  
+Команда CowWow</p></div>
+</div>
+        <ul>
+	    <li style="--bg-color: #c1cf00;">
+		    <span class="icon"><i class="Profile"><img src="home3.png" alt="Profile"></i></span>
+		    <span class="text"><a onclick="window.location.href='index.html'">На главную</a></span>
+	    </li>
+		<li style="--bg-color: #0d4740;">
+			<span class="icon"><i class="Profile"><img src="back.png" alt="Profile"></i></span>
+			<span class="text"><a onclick="window.location.href='ЛичныйКабинет.html'">Назад</a></span>
+		</li>
+        </ul>     
+</body>
+</html>

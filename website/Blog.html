@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой блог</title>
+    <style>
+        body {
+    margin: 0; /* Убирает отступы по умолчанию вокруг тела документа */
+	padding: 0; /* Убирает внутренние отступы по умолчанию */
+	box-sizing: border-box; /* Устанавливает, что ширина и высота включают padding и border, упрощая управление размерами */
+	font-family: "Alegreya Sans", sans-serif; /* Устанавливает шрифт для текста на странице */
+	display: grid; /* Устанавливает сеточный дисплей для тела документа */
+	place-content: center; /* Центрирует содержимое по вертикали и горизонтали */
+	min-height: 100vh; /* Устанавливает минимальную высоту тела документа равной высоте экрана */
+
+}
+        header {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        .content {
+            flex: 3;
+            padding: 20px;
+            background: white;
+            margin-right: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .post {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+        }
+        .post h2 {
+            margin: 0 0 10px;
+        }
+        .post p {
+            color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007bff;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        ul {
+    margin-left: auto;
+	margin-right: auto;
+	position: relative; /* Устанавливает относительное позиционирование для ul */
+	display: flex; /* Устанавливает флекс-дисплей для ul */
+	gap: 28px; /* станавливает расстояние между элементами списка */
+}
+
+ul li { /* Стили для элементов списка (li) */
+	position: relative; /* Устанавливает относительное позиционирование для li */
+	list-style: none; /* Убирает маркеры списка по умолчанию */
+	width: 72px; /* Устанавливает ширину элемента списка */
+	height: 72px; /* станавливает высоту элемента списка */
+	border-radius: 72px; /* Закругляет углы элемента списка */
+	background: rgb(255, 255, 255); /* Устанавливает белый фон элемента списка */
+	cursor: pointer; /* Изменяет курсор на указатель при наведении на элемент списка */
+	display: flex; /* Устанавливает флекс-дисплей для li */
+	align-items: center; /* центрирует элементы по вертикали в li */
+	justify-content: center; /* центрирует элементы по горизонтали в li */
+	box-shadow: 0 0 0 2px #000; /* Добавляет тень к элементу списк*/
+	transition: 300ms; /* Задает время перехода для анимаций */
+}
+
+ul li:hover { /* Стили для элемента списка при наведении курсора */
+	width: 180px; /* Увеличивает ширину элемента списка при наведении */
+	box-shadow: 0 0 0 2px var(--bg-color); /* Меняет цвет тени при наведении на элемент списка */
+}
+
+ul li::before { /* Псевдоэлемент перед элементом списка */
+	content: ""; /* Задает пустое содержимое для псевдоэлемента */
+	position: absolute; /* Устанавливает абсолютное позиционирование для псевдоэлемента */
+	inset: 0; /* Задает нулевые отступы со всех сторон псевдоэлемента, чтобы он занимал всю площадь родителя */
+	border-radius: 72px; /* Закругляет углы псевдоэлемента  */
+	background: var(--bg-color); /* Задает фон псевдоэлемента, используя переменную цвета фона */
+	opacity: 0; /* Задает начальную непрозрачность псевдоэлемента (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций псевдоэлемента */
+}
+
+ul li:hover::before { /* Стили для псевдоэлемента при наведении на элемент списка */
+	opacity: 1; /* Делает псевдоэлемент видимым при наведении */
+}
+
+ul li span { /* Стили для вложенных элементов span в li */
+	position: absolute; /* Устанавливает абсолютное позиционирование для span */
+}
+
+ul li i { /* Стили для иконок внутри элемента списка (i) */
+	color: rgb(0, 0, 0); /* Устанавливает черный цвет для иконки */
+	font-size: 2em; /* Задает размер шрифта для иконки */
+	transition: 300ms; /* Задает время перехода для анимаций иконки */
+	transition-delay: 150ms;  /* Задает задержку перед началом анимации иконки */
+}
+
+ul li:hover i { /* стили для иконки при наведении на элемент списка  */
+	transform: scale(0); /* Уменьшает размер иконки до нуля при наведении */
+	color: #fff; /* Меняет цвет иконки на белый при наведении */
+	transition-delay: 0s; /* Убирает задержку перед началом анимации иконки при наведении */
+}
+
+ul li .text { /* Стили для текста внутри элемента списка (span с классом text) */
+	color: #fff; /* Устанавливает белый цвет текста */
+	font-size: 1.5em; /* Задает размер шрифта для текста */
+	z-index: 1; /* Устанавливает уровень наложения текста над другими элементами */
+	text-transform: uppercase; /* Преобразует текст в верхний регистр */
+	font-weight: 400; /* Задает толщину шрифта для текста */
+	letter-spacing: 0.024em; /* Устанавливает расстояние между буквами текста */
+	opacity: 0; /* Задает начальную непрозрачность текста (невидимый) */
+	transition: 300ms; /* Задает время перехода для анимаций текста */
+	letter-spacing: -0.125px; /* Задает отрицательное расстояние между буквами текста */
+}
+
+ul li:hover .text { /* Стили для текста при наведении на элемент списка */
+	opacity: 1; /* Делает текст видимым при наведении */
+}
+ .icon {  
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    margin-left: 18%;
+    padding-top: 10px;
+	background-color: rgba(255, 255, 255, 0);
+}
+.text1{
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 80PX;
+}
+img {
+                max-width: 80%; /* Ограничиваем ширину изображения */
+                height: auto; /* Автоматически подстраиваем высоту */
+                margin: 0px; /* Отступы вокруг изображений */
+}
+.button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+}
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  padding-left: 20px;
+}
+.colorList{
+	background-color: #e0a46c;
+	margin: -60px 150px 0px 150px ;
+	border-radius: 50px;
+	padding-left: 30px;
+	padding-right: 30px;
+	color: rgb(0, 0, 0);
+}
+    </style>
+</head>
+<body>
+    <div class="text1">
+        <center><h4>Мой блог</h4> </center></div>
+<div class="container">
+    <div class="content">
+        <div class="post">
+            <h2>Пост 1</h2>
+            <p>Отдам даром 10000 литров меда</p>
+        </div>
+        <div class="post">
+            <h2>Пост 2</h2>
+            <p>Заберу бесплатно много литров меда</p>
+        </div>
+        <div class="post">
+            <h2>Пост 3</h2>
+            <p>Мяу мур с тебя лайк</p>
+        </div>
+    </div>
+</div>
+<ul>
+    <li style="--bg-color: #c1cf00;">
+        <span class="icon"><i class="Profile"><img src="home3.png" alt="Profile"></i></span>
+        <span class="text"><a onclick="window.location.href='index.html'">На главную</a></span>
+    </li>
+    </ul> 
+<footer>
+    <p>&copy; 2025 Мой блог. Все права защищены.</p>
+</footer>
+
+</body>
+</html>
